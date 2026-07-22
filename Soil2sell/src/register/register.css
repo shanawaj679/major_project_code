@@ -1,0 +1,147 @@
+*{
+    margin:0;
+    padding:0;
+}
+.register_container{
+    min-height:100vh;
+    min-width:100vw;
+    display:flex;
+    justify-content: center;
+     color:rgb(194, 194, 194);
+}
+.register_page{
+   padding-top:2rem;
+    height:60vh;
+    display:grid;
+    grid-template-rows:1fr 1fr;
+    gap: 2rem;
+
+      background: rgba(255,255,255,.04);
+backdrop-filter: blur(12px);
+border: 1px solid rgba(255,255,255,.08);
+border-radius: 20px;
+padding:2rem;
+}
+.register_page_grid_1{
+    display:grid;
+    grid-template-rows: 0.6fr 1fr 1.6fr;
+}
+.register_page_logo{
+    font-size:2rem;
+    font-weight:900;
+}
+.gradiant_text{
+    background: linear-gradient(90deg, #002a5d, #b1caff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+.register_page_headings{
+     font-size:1.5rem;
+     line-height:1.3;
+    font-weight:600;
+}
+.register_page_description{
+    font-size:1rem;
+    display: flex;
+    flex-direction:column;
+    gap:0.5rem;
+    font-weight:500;
+}
+.register_page_input_content{
+     font-size:1rem;
+     line-height:1.5;
+    font-weight:600;
+}
+.reg_page_labels{
+    font-size:1.2rem;
+    font-weight:600;
+    margin-top:1rem;
+}
+.reg_page_labels_inputs{
+    background-color: rgb(44, 44, 44);
+    padding-left:0.5rem; 
+    height:1.5rem;
+    width:97%;
+    font-size:1.1rem;
+   border-color:transparent;
+   border-radius:0.5rem;
+      transition: all 0.3s ease;
+      color:white;
+}
+.reg_page_labels_inputs:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
+}
+.reg_page_labels_inputs:focus {
+    border-color: #3b82f6; 
+    box-shadow: 0 0 15px rgb(0, 19, 35 0.35);
+    transform: scale(1.02);
+}
+.reg_page_labels_button{
+ width: 100%;
+height: 2.5rem;
+border: none;
+border-radius: 1rem;
+background:#006525;
+color: rgb(183, 183, 183);
+ font-size: 1rem;
+font-weight: 600;
+ cursor: pointer;
+transition: all 0.25s ease;
+}
+.reg_page_labels_button:hover{
+    transform: scale(1.02);
+  background:#16a34a;
+    box-shadow: 0 8px 20px rgba(74, 255, 77, 0.35);
+}
+.reg_page_labels_button:active{
+    transform: scale(0.98);
+}
+.reg_link_to_login{
+    padding-top:1rem;
+}
+.reg_link{
+    color: #5482ff;
+}
+@media (min-width:1000px){
+    .register_container{
+         display:flex;
+    justify-content: center;
+align-items: center;
+}
+.register_page{
+    height:40vh;
+    width:60vw;
+    display:grid;
+    grid-template-columns:0.7fr 1fr;
+    gap: 2rem;
+}
+.register_page_grid_1{
+    display:grid;
+    grid-template-rows: 0.6fr 1fr 2fr;
+}
+.register_page_logo{
+    font-size:3.5rem;
+    font-weight:900;
+}
+.register_page_headings{
+     font-size:2rem;
+     line-height:1.5;
+    font-weight:700;
+}
+.register_page_description{
+    font-size:1.3rem;
+    display: flex;
+    flex-direction:column;
+    gap:0.6rem;
+    font-weight:600;
+}
+.register_page_input_content{
+     font-size:1.5rem;
+     line-height:1.5;
+    font-weight:700;
+}
+}
