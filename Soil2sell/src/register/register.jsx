@@ -18,6 +18,7 @@ const [confirmpassword,setconfirmpassword]=useState("")
 const [message,setmessage]=useState("")
 
 const reg_user = async ()=>{
+    try{
 const response = await axios.post("http://localhost:3000/register",{
     name,
     email,
@@ -29,6 +30,10 @@ withCredentials:true
 })
 const data = response.data 
 setmessage(data.message)
+    }
+catch (err){
+     setmessage(err.response?.data?.message || "Something went wrong");
+}
 }
 return <>
 <div className="register_container">
@@ -79,7 +84,7 @@ transition={{...fadeUp.transition,duration:1.69}}> <input type="password" placeh
              <motion.div {...fadeUp} 
 transition={{...fadeUp.transition,duration:1.73}} className="reg_page_labels">Confirm Password </motion.div>
            <motion.div {...fadeUp} 
-transition={{...fadeUp.transition,duration:1.77}}> <input type="text" placeholder="password" id="reg_confirm_password" className="reg_page_labels_inputs" value={setpassword} onChange={(e)=>setconfirmpassword(e.target.value)} /> </motion.div>
+transition={{...fadeUp.transition,duration:1.77}}> <input type="text" placeholder="password" id="reg_confirm_password" className="reg_page_labels_inputs" value={confirmpassword} onChange={(e)=>setconfirmpassword(e.target.value)} /> </motion.div>
            <motion.div {...fadeUp} 
 transition={{...fadeUp.transition,duration:1.81}} className="reg_page_labels"> <button type="submit" className="reg_page_labels_button" onClick={reg_user}> Create Account</button></motion.div>
            <motion.div {...fadeUp} 
