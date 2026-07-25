@@ -2,7 +2,9 @@ import "./login.css"
 import {motion} from "framer-motion"
 import axios from "axios"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Login_user(){
+const navigate = useNavigate();
 const [email,setemail]=useState("")
 const [password,setpassword]=useState("")
 const [message,setmessage]=useState("")
@@ -15,10 +17,8 @@ const [message,setmessage]=useState("")
 const login_inputs = async ()=>{
     try{
          const response = await axios.post("http://localhost:3000/login",{
-            name,
             email,
             password,
-            confirmpassword
          },
         {
             withCredentials:true
@@ -26,6 +26,9 @@ const login_inputs = async ()=>{
     )
     const data = response.data
     setmessage(data.message)
+    if(response.status===200){
+          navigate("/dashboard");
+    }
     }
     catch(err){
         console.log(err);
@@ -78,7 +81,7 @@ transition={{...fadeUp.transition,duration:1.56}}  className="login_page_labels"
            <motion.div {...fadeUp} 
 transition={{...fadeUp.transition,duration:1.6}} > <input type="password" placeholder="password" id="login_password" className="login_page_labels_inputs" value={password} onChange={(e)=>setpassword(e.target.value)} /> </motion.div>
            <motion.div {...fadeUp} 
-transition={{...fadeUp.transition,duration:1.72}}  className="login_page_labels"> <button type="submit" className="login_page_labels_button" onClick={login_inputs}> Create Account</button></motion.div>
+transition={{...fadeUp.transition,duration:1.72}}  className="login_page_labels"> <button type="submit" className="login_page_labels_button" onClick={login_inputs}>Login</button></motion.div>
              <motion.div {...fadeUp} 
 transition={{...fadeUp.transition,duration:1.76}}  className="login_page_labels" id="login_output"> {message} </motion.div>
         </motion.div>
