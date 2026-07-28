@@ -17,9 +17,15 @@ router.post("/",async(req,res)=>{
              if(password !== confirmpassword){
               return res.status(400).json({message:"Passwords do not match"})
              }
+             const [user] =await db.query("select id,name from s2s_user where email = ?",[email])
+             if(user.length===0){
              const hashedpassword = await bcrypt.hash(password,10)
              await db.query("insert into s2s_user(name,email,password) values (?,?,?)",[name,email,hashedpassword])
-             return res.status(200).json({message:"regisration is successfull. please login by using above link"})
+             return res.status(201).json({message:"regisration is successfull. please login by using above link"})
+             }
+             else{
+                return res.status(400).json({message:"user already exists! please login using above link"})
+             }
     }
     catch(err){
          console.log(err)
