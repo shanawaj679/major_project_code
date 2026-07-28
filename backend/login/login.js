@@ -33,6 +33,7 @@ res.cookie("token",jwtoken,{
   maxAge:24*60*60*1000,
 })
 return res.status(200).json({message:"login successfull"})
+await db.query("insert into login_user (id,login_time) values (?,now())",[req.user.id])
 }
 catch(err){
     console.log(err)
