@@ -2,6 +2,7 @@ import "./login.css"
 import {motion} from "framer-motion"
 import axios from "axios"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 function Login_user(){
 const navigate = useNavigate();
@@ -82,8 +83,10 @@ transition={{...fadeUp.transition,duration:1.56}}  className="login_page_labels"
 transition={{...fadeUp.transition,duration:1.6}} > <input type="password" placeholder="password" id="login_password" className="login_page_labels_inputs" value={password} onChange={(e)=>setpassword(e.target.value)} /> </motion.div>
            <motion.div {...fadeUp} 
 transition={{...fadeUp.transition,duration:1.72}}  className="login_page_labels"> <button type="submit" className="login_page_labels_button" onClick={login_inputs}>Login</button></motion.div>
+           <motion.div {...fadeUp} 
+transition={{...fadeUp.transition,duration:1.76}} className="reg_link_to_login">if you don't have an account then <Link className="reg_link" to="/register">Register</Link></motion.div>
              <motion.div {...fadeUp} 
-transition={{...fadeUp.transition,duration:1.76}}  className="login_page_labels" id="login_output"> {message} </motion.div>
+transition={{...fadeUp.transition,duration:1.85}}  className="login_page_labels" id="login_output"> {message} </motion.div>
         </motion.div>
     </motion.div>
 </div>
