@@ -88,7 +88,7 @@ transition={{...fadeUp.transition,duration:1.77}}> <input type="text" placeholde
            <motion.div {...fadeUp} 
 transition={{...fadeUp.transition,duration:1.81}} className="reg_page_labels"> <button type="submit" className="reg_page_labels_button" onClick={reg_user}> Create Account</button></motion.div>
            <motion.div {...fadeUp} 
-transition={{...fadeUp.transition,duration:1.85}} className="reg_link_to_login">if you already have an account then <Link className="reg_link" to="/login">Sign In</Link></motion.div>
+transition={{...fadeUp.transition,duration:1.85}} className="reg_link_to_login">if you already have an account then <Link className="reg_link" to="/">Sign In</Link></motion.div>
              <motion.div {...fadeUp} 
 transition={{...fadeUp.transition,duration:1.89}} className="reg_page_labels" id="reg_output">{message}</motion.div>
         </motion.div>
