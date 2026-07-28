@@ -5,9 +5,8 @@ import Login from "./login/login.jsx";
 function App(){
   return <>
  <Routes>
-
-      <Route path="/" element={<Register_user />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register_user />} />
       <Route path="/dashboard" element={<Dashboard />}/>
 
     </Routes>
