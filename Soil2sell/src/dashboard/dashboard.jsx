@@ -2,13 +2,38 @@ import "./dashboard.css"
 import {FaSearch,FaLock, FaCog, FaSignOutAlt} from "react-icons/fa"
 import {motion} from "framer-motion"
 import axios from "axios"
-import { useState ,useEffect} from "react"
+import { useState ,useEffect, use} from "react"
+import { useNavigate } from "react-router-dom"
 function Dashboard(){
+ const navigate = useNavigate()
 const [logout,setlogout]=useState("")
+const [geodata, setgeodata]=useState("")
+const [country,setcountry]=useState("")
+const [state,setstate]=useState("")
+const [city,setcity]=useState("")
+const [district,setdistrict]=useState("")
+const [village,setvillage]=useState("")
 const [message,setmessage]=useState({})
 const [uservisible,setuservisible]=useState(true)
 const toggleinfo = ()=>{
     setuservisible(!uservisible);
+}
+
+useEffect(()=>{
+get_geo_data()
+},[])
+const get_geo_data = async ()=>{
+    try{
+ const response = await axios.get("http://localhost:3000/get_geo_data",{
+withCredentials:true
+})
+const data = response.data;
+setgeodata(data)
+    }
+    catch(err){
+        console.log(err)
+        setmessage("something went wrong")
+    }
 }
 useEffect(()=>{
     get_user()
@@ -34,6 +59,8 @@ const logout_user = async ()=>{
     })
     const data =response.data
     setlogout(message)
+    navigate("/")
+    
 }
 catch(err){
       setmessage("something went wrong")
@@ -107,12 +134,95 @@ let date = new Date().toLocaleDateString("en-IN",{
 <p className="greet_subtitle">{motivation}</p>
                     </div>
 
-                    <div>
+                    <motion.div {...fadeup} 
+                     transition={{...fadeup.transition,duration:1}}>
                           <h2>{date}</h2>
-                    </div>
-
+                          <h2>{geodata.country}</h2>
+                           <h2>{geodata.state}</h2>
+                            <h2>{geodata.city}</h2>
+                             <h2>{geodata.district}</h2>
+                              <h2>{geodata.village}</h2>
+                    </motion.div>
 </div>
  </motion.div>
+
+<motion.div {...fadeup}
+transition={{...fadeup.transition,duration:1.2}} className="wether_details">
+<motion.div {...fadeup}
+transition={{...fadeup.transition,duration:1.5}} className="weather_container">
+
+<div className="weather_header">
+    <h1>🌤 Current Weather</h1>
+    <h2>{geodata.temperature}°C</h2>
+    <p>Feels like {geodata.feels_like}°C</p>
+</div>
+
+<div className="weather_grid">
+
+<div className="weather_card">
+<h3>💧 Humidity</h3>
+<p>{geodata.humidity}%</p>
+</div>
+
+<div className="weather_card">
+<h3>☁️ Cloud Cover</h3>
+<p>{geodata.cloud_cover}%</p>
+</div>
+
+<div className="weather_card">
+<h3>🌧 Rainfall</h3>
+<p>{geodata.rainfall} mm</p>
+</div>
+
+<div className="weather_card">
+<h3>🌬 Wind</h3>
+<p>{geodata.wind_speed} km/h</p>
+</div>
+
+<div className="weather_card">
+<h3>🌡 Max Temp</h3>
+<p>{geodata.max_temperature}°C</p>
+</div>
+
+<div className="weather_card">
+<h3>❄️ Min Temp</h3>
+<p>{geodata.min_temperature}°C</p>
+</div>
+
+<div className="weather_card">
+<h3>☀️ UV Index</h3>
+<p>{geodata.uv_index}</p>
+</div>
+
+<div className="weather_card">
+<h3>👀 Visibility</h3>
+<p>{geodata.visibility/1000} km</p>
+</div>
+
+<div className="weather_card">
+<h3>🌅 Sunrise</h3>
+<p>{geodata.sunrise}</p>
+</div>
+
+<div className="weather_card">
+<h3>🌇 Sunset</h3>
+<p>{geodata.sunset}</p>
+</div>
+
+<div className="weather_card">
+<h3>🌱 Soil Temp</h3>
+<p>{geodata.soil_temperature}°C</p>
+</div>
+
+<div className="weather_card">
+<h3>💦 Soil Moisture</h3>
+<p>{(geodata.soil_moisture*100).toFixed(1)}%</p>
+</div>
+
+</div>
+</motion.div>
+
+</motion.div>
         </div>
         <div  className="main_grid_2">
               {uservisible && (
