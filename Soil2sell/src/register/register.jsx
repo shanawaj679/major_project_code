@@ -3,8 +3,10 @@ import logo from "../assets/logo.png"
 import {motion} from "framer-motion"
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function Register_user(){
+    const navigate = useNavigate()
     const fadeUp = {
   initial: { opacity: 0, scale:0.95 },
   whileInView: { opacity: 1, scale:1 },
@@ -30,6 +32,7 @@ withCredentials:true
 })
 const data = response.data 
 setmessage(data.message)
+navigate("/")
     }
 catch (err){
      setmessage(err.response?.data?.message || "Something went wrong");
