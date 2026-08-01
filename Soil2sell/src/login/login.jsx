@@ -27,9 +27,13 @@ const login_inputs = async ()=>{
     )
     const data = response.data
     setmessage(data.message)
-    if(response.status===200){
+    if(data.user_living_info===false){
+        navigate("/farmer_details");
+    }
+    else{
           navigate("/dashboard");
     }
+    
     }
     catch(err){
         console.log(err);
