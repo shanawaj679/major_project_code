@@ -32,8 +32,10 @@ res.cookie("token",jwtoken,{
   sameSite:"lax",
   maxAge:24*60*60*1000,
 })
-return res.status(200).json({message:"login successfull"})
-await db.query("insert into login_user (id,login_time) values (?,now())",[req.user.id])
+const [living] = await db.query("select country from user_living_info where id = ?",[user[0].id])
+  return res.json({user_living_info: living.length>0,message:"login successfull"})
+
+
 }
 catch(err){
     console.log(err)

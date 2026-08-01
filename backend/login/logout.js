@@ -10,7 +10,6 @@ try{
             sameSite: "lax",
             secure: false 
         });
-    await db.query("insert into login_user logout_time values now() where id = (?)",[req.user.id]);
     res.json({message:"logout successful"})
 }
 catch(err){
